@@ -3,23 +3,23 @@
     <section class="sidebar">
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MENU</li>
-            <li>
-                <a href="#"><i class="fa fa-tachometer"></i> <span>Dashboard</span></a>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/dashboard']"><i class="fa fa-tachometer"></i> <span>Dashboard</span></a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-university"></i> <span>Accounts</span></a>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/accounts']"><i class="fa fa-university"></i> <span>Accounts</span></a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-list"></i> <span>Movements</span></a>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/movements']"><i class="fa fa-list"></i> <span>Movements</span></a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-exchange"></i> <span>Transfers</span></a>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/transfers']"><i class="fa fa-exchange"></i> <span>Transfers</span></a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-thumb-tack"></i> <span>Projects</span></a>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/projects']"><i class="fa fa-thumb-tack"></i> <span>Projects</span></a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-credit-card"></i> <span>Credit cards</span></a>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/credit-cards']"><i class="fa fa-credit-card"></i> <span>Credit cards</span></a>
             </li>
             <li class="treeview">
                 <a href="#">
@@ -29,7 +29,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Bank statement</a></li>
+                    <li><a [routerLink]="['/bank-statement']"><i class="fa fa-circle-o"></i> Bank statement</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -40,8 +40,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Categories</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Subcategories</a></li>
+                    <li><a [routerLink]="['/categories']"><i class="fa fa-circle-o"></i> Categories</a></li>
+                    <li><a [routerLink]="['/subcategories']"><i class="fa fa-circle-o"></i> Subcategories</a></li>
                 </ul>
             </li>
         </ul>

@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { ROUTES } from './app.routes';
+import { AccountsComponent } from './accounts/accounts.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ROUTES } from './app.routes';
     SidebarComponent,
     ControlSidebarComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    AccountsComponent
   ],
   imports: [
     BrowserModule,
