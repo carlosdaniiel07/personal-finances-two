@@ -1,0 +1,1 @@
+export const API_ENDPOINT = 'https://api-personal-finances-two.azurewebsites.net/api'

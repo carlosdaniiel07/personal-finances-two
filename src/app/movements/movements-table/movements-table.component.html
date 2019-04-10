@@ -1,0 +1,39 @@
+<table class="table table-hover" style="width: 100%;">
+    <thead>
+        <tr>
+            <th>Accounting</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Ammount</th>
+            <th>Observation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let movement of movements">
+            <td>{{movement.AccountingDate | date: 'dd/MM/yyyy'}}</td>
+            <td>
+                <span *ngIf="movement.Type == 'C'; else elseBlock" class="label label-success">Credit</span>
+                <ng-template #elseBlock>
+                    <span class="label label-danger">Debit</span>
+                </ng-template>
+            </td>
+            <td>{{movement.Description}}</td>
+            <td>{{movement.Value | number: '1.2-2'}}</td>
+            <td>{{movement.Observation}}</td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-wrench"></i> Options
+                        <span class="fa fa-caret-down"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="fa fa-eye"></i> Details</a></li>
+                        <li><a href="#"><i class="fa fa-pencil-square-o"></i> Edit</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-trash"></i> Remove</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

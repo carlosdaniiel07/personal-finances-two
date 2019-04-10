@@ -1,12 +1,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Accounts
-            <small>Add, edit, remove and view your accounts</small>
+            Movements
+            <small>Add, edit, remove and view your movement</small>
         </h1>
         <ol class="breadcrumb">
             <li><a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Accounts</li>
+            <li class="active">Movements</li>
         </ol>
     </section>
 
@@ -17,13 +17,13 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-2">
-                        <a [routerLink]="['/new-account']" class="btn btn-flat btn-block btn-success"><i class="fa fa-university"></i> New account</a>
+                        <a href="#" class="btn btn-flat btn-block btn-success"><i class="fa fa-file"></i> New movement</a>
                     </div>
                 </div>
 
                 <br/>
 
-                <finances-accounts-table [accounts]="accounts"></finances-accounts-table>
+                <finances-movements-table></finances-movements-table>
             </div>
             <!-- /.box-body -->
         </div>

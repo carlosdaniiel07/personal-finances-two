@@ -1,0 +1,61 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            New account 
+            <small>Add a new account</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a [routerLink]="['/accounts']">Accounts</a></li>
+            <li class="active">New account</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- box -->
+        <div class="box box-primary">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form [formGroup]="newAccountForm" role="form" novalidate>
+                            <div 
+                                [class.has-error]="!name.valid && name.touched" 
+                                class="form-group"
+                            >
+                                <label>Name</label>
+                                <input formControlName="name" type="text" name="" class="form-control" value="{{account?.Name}}">
+                                <span *ngIf="!name.valid && name.touched" class="help-block">Required field</span>
+                            </div>
+                            <div 
+                                [class.has-error]="!type.valid && type.touched"
+                                class="form-group"
+                            >
+                                <label>Type</label>
+                                <input formControlName="type" type="text" name="" class="form-control" value="{{account?.AccountType}}">
+                                <span *ngIf="!type.valid && type.touched" class="help-block">Required field</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!initialBalance.valid && initialBalance.touched"
+                                        class="form-group"
+                                    >
+                                        <label>Initial balance</label>
+                                        <input formControlName="initialBalance" type="text" name="" class="form-control" value="{{account?.InitialBalance | number: '1.2-2'}}">
+                                        <span *ngIf="!initialBalance.valid && initialBalance.touched" class="help-block">Required field</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br/>
+                            
+                            <button (click)="insertAccount()" [disabled]="!newAccountForm.valid" type="button" class="btn btn-success btn-flat pull-left"><i class="fa fa-check"></i> Confirm</button>
+                         </form>
+                    </div>
+                </div>           
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </section>
