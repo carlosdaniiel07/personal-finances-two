@@ -32,6 +32,12 @@ export class EditAccountComponent implements OnInit {
     })
   }
 
+  public updateAccount(): void {
+    let account = new Account(this.account.Id, this.name.value, this.type.value, this.initialBalance.value,
+        this.balance.value, true)
+    this.service.updateAccount(account)
+  }
+
   public getAvailableAccountTypes(): AccountTypeSelect[] {
     return [
         {label: 'Checking', value: 1},
@@ -45,7 +51,8 @@ export class EditAccountComponent implements OnInit {
   private initUpdateAccountForm(account: Account): void {
     this.updateAccountForm = new FormGroup({
       name: new FormControl(account.Name, Validators.required),
-      type: new FormControl(account.AccountType, Validators.required),
+      type: new FormControl(this.getAvailableAccountTypes()
+          .find(x => x.label === account.AccountType).value, Validators.required),
       initialBalance: new FormControl(account.InitialBalance, Validators.required),
       balance: new FormControl(account.Balance, Validators.required)
     })

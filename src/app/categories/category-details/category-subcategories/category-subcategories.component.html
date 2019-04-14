@@ -1,0 +1,29 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th style="width: 40px;">Editable</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let subcategory of subcategories | async">
+                <td>{{subcategory.Name}}</td>
+                <td style="width: 40px; text-align: center;">
+                    <span *ngIf="subcategory.CanEdit" class="text-green">
+                        <i class="fa fa-check"></i>
+                    </span>
+                    <span *ngIf="!subcategory.CanEdit" class="text-red">
+                        <i class="fa fa-times"></i> 
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- /.body -->
+
+<div class="box-footer clearfix">
+    <a href="#" class="btn btn-sm btn-info btn-flat pull-left"><i class="fa fa-plus"></i> New subcategory</a>
+</div>
+<!-- /.box-footer -->

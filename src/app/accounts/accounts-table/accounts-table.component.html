@@ -1,28 +1,30 @@
-<table class="table table-hover" style="width: 100%;">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Initial balance</th>
-            <th>Balance</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let account of accounts | async">
-            <td>{{account.Name}}</td>
-            <td>
-                <span class="label label-primary">{{account.AccountType}}</span>
-            </td>
-            <td>{{account.InitialBalance | number: '1.2-2'}}</td>
-            <td>{{account.Balance | number: '1.2-2'}}</td>
-            <td>
-                <div class="btn-group">
-                    <a [routerLink]="['/accounts', account.Id]" class="btn btn-flat btn-default"><i class="fa fa-eye"></i> View</a>
-                    <a [routerLink]="['/accounts/edit', account.Id]" class="btn btn-flat btn-default"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                    <a href="#" class="btn btn-flat btn-danger"><i class="fa fa-trash-o"></i> Delete</a>
-                </div>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Initial balance</th>
+                <th>Balance</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let account of accounts | async">
+                <td>{{account.Name}}</td>
+                <td>
+                    <span class="label label-primary">{{account.AccountType}}</span>
+                </td>
+                <td>{{account.InitialBalance | number: '1.2-2'}}</td>
+                <td>{{account.Balance | number: '1.2-2'}}</td>
+                <td>
+                    <div class="btn-group">
+                        <a [routerLink]="['/accounts', account.Id]" class="btn btn-flat btn-default"><i class="fa fa-eye"></i> View</a>
+                        <a [routerLink]="['/accounts/edit', account.Id]" class="btn btn-flat btn-default"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                        <a href="#" class="btn btn-flat btn-danger"><i class="fa fa-trash-o"></i> Delete</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

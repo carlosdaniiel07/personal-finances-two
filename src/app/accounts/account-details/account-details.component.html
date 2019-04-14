@@ -54,6 +54,18 @@
         </div>
         <!-- /.box -->
 
-        <finances-account-movements [movements]="movements"></finances-account-movements> 
+        <!-- movements-box -->
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Account movements</h3>
+            </div>
+            <!-- /.box-header -->
+            
+            <div class="box-body">
+                <finances-shared-movements [movements]="movements">
+                </finances-shared-movements>
+            </div>
+        </div>
+        <!-- ./movements-box -->   
     </section>
     <!-- /.content -->

@@ -32,7 +32,12 @@
                                 class="form-group"
                             >
                                 <label>Type</label>
-                                <input formControlName="type" type="text" name="" class="form-control" value="{{account?.AccountType}}">
+                                <select formControlName="type" class="form-control">
+                                    <option 
+                                        *ngFor="let option of getAvailableAccountTypes()" 
+                                        [value]="option.value"
+                                    >{{option.label}}</option>
+                                </select>
                                 <span *ngIf="!type.valid && type.touched" class="help-block">Obrigatório</span>
                             </div>
                             <div class="row">
@@ -56,7 +61,7 @@
 
                             <br/>
                             
-                            <button  [disabled]="!updateAccountForm.valid" type="button" class="btn btn-primary btn-flat pull-left"><i class="fa fa-floppy-o"></i> Update</button>
+                            <button (click)="updateAccount()" [disabled]="!updateAccountForm.valid" type="button" class="btn btn-primary btn-flat pull-left"><i class="fa fa-floppy-o"></i> Update</button>
                          </form>
                     </div>
                 </div>           

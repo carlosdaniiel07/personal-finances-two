@@ -20,13 +20,20 @@ import { AccountsTableComponent } from './accounts/accounts-table/accounts-table
 
 import { AccountService } from './accounts/accounts.service';
 import { MovementService } from './movements/movements.service';
+import { CategoryService } from './categories/category.service';
 
 import { AccountDetailsComponent } from './accounts/account-details/account-details.component';
 import { MovementsComponent } from './movements/movements.component';
 import { MovementsTableComponent } from './movements/movements-table/movements-table.component';
-import { AccountMovementsComponent } from './accounts/account-details/account-movements/account-movements.component';
+import { SharedMovementsComponent } from './shared/account-movements/shared-movements.component';
 import { EditAccountComponent } from './accounts/edit-account/edit-account.component';
 import { NewAccountComponent } from './accounts/new-account/new-account.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoriesTableComponent } from './categories/categories-table/categories-table.component';
+import { CategoryDetailsComponent } from './categories/category-details/category-details.component';
+import { CategorySubcategoriesComponent } from './categories/category-details/category-subcategories/category-subcategories.component';
+import { SubcategoriesComponent } from './subcategories/subcategories.component';
+import { CategoryMovementsComponent } from './categories/category-details/category-movements/category-movements.component';
 
 registerLocaleData(ptBr)
 
@@ -43,9 +50,15 @@ registerLocaleData(ptBr)
     AccountDetailsComponent,
     MovementsComponent,
     MovementsTableComponent,
-    AccountMovementsComponent,
+    SharedMovementsComponent,
     EditAccountComponent,
-    NewAccountComponent
+    NewAccountComponent,
+    CategoriesComponent,
+    CategoriesTableComponent,
+    CategoryDetailsComponent,
+    CategorySubcategoriesComponent,
+    SubcategoriesComponent,
+    CategoryMovementsComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +69,7 @@ registerLocaleData(ptBr)
   providers: [
     AccountService,
     MovementService,
+    CategoryService,
     {provide: LOCALE_ID, useValue: 'pt-BR'}
   ],
   bootstrap: [AppComponent]

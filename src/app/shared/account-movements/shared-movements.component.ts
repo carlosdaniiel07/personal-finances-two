@@ -3,21 +3,20 @@ import { ActivatedRoute } from '@angular/router'
 
 import { Observable } from 'rxjs'
 
-import { AccountService } from './../../accounts.service'
-import { Movement } from './../../../movements/movements.model'
+import { AccountService } from './../../accounts/accounts.service'
+import { Movement } from './../../movements/movements.model'
 
 @Component({
-  selector: 'finances-account-movements',
-  templateUrl: './account-movements.component.html'
+  selector: 'finances-shared-movements',
+  templateUrl: './shared-movements.component.html'
 })
-export class AccountMovementsComponent implements OnInit {
+export class SharedMovementsComponent implements OnInit {
 
   @Input() movements: Observable<Movement[]>
 
   constructor(private accountService: AccountService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-  	
+ 	 	
   }
-
 }

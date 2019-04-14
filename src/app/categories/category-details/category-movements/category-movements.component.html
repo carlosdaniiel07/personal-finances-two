@@ -1,0 +1,40 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Type</th>
+                <th>AccountingDate</th>
+                <th>Total value</th>
+                <th>Category</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let movement of movements | async">
+                <td>{{movement.Description}}</td>
+                <td>
+                    <span *ngIf="movement.Type == 'C'" class="label label-success">Credit</span>
+                    <span *ngIf="movement.Type == 'D'" class="label label-danger">Debit</span>
+                </td>
+                <td>{{movement.AccountingDate | date: 'dd/MM/yyyy'}}</td>
+                <td>{{movement.Value | number: '1.2-2'}}</td>
+                <td></td>
+                <td>
+                    <span *ngIf="movement.MovementStatus == 'Launched'" class="text-green">
+                        <i class="fa fa-check"></i> {{movement.MovementStatus}}
+                    </span>
+                    <span *ngIf="movement.MovementStatus == 'Pending'" class="text-yellow">
+                        <i class="fa fa-exclamation-triangle"></i> {{movement.MovementStatus}}
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- /.body -->
+
+<div class="box-footer clearfix">
+    <a href="#" class="btn btn-sm btn-info btn-flat pull-left"><i class="fa fa-plus"></i> New movement</a>
+</div>
+<!-- /.box-footer -->

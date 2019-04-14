@@ -1,0 +1,53 @@
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            New category 
+            <small>Add a new category</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a [routerLink]="['/categories']">Categories</a></li>
+            <li class="active">New category</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- box -->
+        <div class="box box-primary">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form [formGroup]="newCategoryForm" role="form" novalidate>
+                            <div 
+                            	[class.has-error]="!name.valid && name.touched" 
+                                class="form-group"
+                            >
+                                <label>Name</label>
+                                <input formControlName="name" type="text" name="" class="form-control" value="{{category?.Name}}">
+                                <span *ngIf="!name.valid && name.touched" class="help-block">Required field</span>
+                            </div>
+                            <div
+                            	[class.has-error]="!type.valid && type.touched" 
+                                class="form-group"
+                            >
+                                <label>Type</label>
+                                <select formControlName="type" class="form-control">
+                                	<option 
+                                		*ngFor="let option of getAvailableTypes()"
+                                		value="{{option.value}}" 
+                                	>
+                                	{{option.label}}	
+                                	</option>
+                                </select>
+                                <span *ngIf="!type.valid && type.touched" class="help-block">Required field</span>
+                            </div>
+
+                            <button (click)="insertCategory()" [disabled]="!newCategoryForm.valid" type="button" class="btn btn-success btn-flat pull-left"><i class="fa fa-check"></i> Confirm</button>
+                         </form>
+                    </div>
+                </div>           
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->

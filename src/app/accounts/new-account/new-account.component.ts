@@ -40,7 +40,7 @@ export class NewAccountComponent implements OnInit {
   private initNewAccountForm(): void {
     this.newAccountForm = new FormGroup({
       name: new FormControl('', Validators.required),
-      type: new FormControl('', Validators.required),
+      type: new FormControl(this.getAvailableAccountTypes()[0].value, Validators.required),
       initialBalance: new FormControl('', Validators.required)
     })
   }

@@ -10,10 +10,24 @@
   
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <style type="text/css">
+    body {
+      background-color: #3c8dbc !important;
+    }
+    
+    #loading-image {
+        position:absolute;
+        top:50%;
+        left:50%;
+        margin-top:-32px;
+        margin-left:-32px;
+    }
+  </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
   <app-root>
-  	Loading..
+  	<img src="assets/loading-icon.gif" alt="Loading" id="loading-image" />
   </app-root>
 </body>
 </html>

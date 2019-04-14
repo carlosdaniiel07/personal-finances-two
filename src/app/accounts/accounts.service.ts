@@ -34,6 +34,15 @@ export class AccountService {
 		let headers = new HttpHeaders().append('Content-Type', 'application/json')
 
 		this.httpClient.post(`${API_ENDPOINT}/accounts`, data, { headers: headers })
-			.subscribe((response) => alert('Objeto inserido com sucesso!'))
+			.subscribe(() => alert('Objeto inserido com sucesso!'))
+	}
+
+	// update an account
+	updateAccount(account: Account): void {
+		let data = JSON.stringify(account)
+		let headers = new HttpHeaders().append('Content-Type', 'application/json')
+
+		this.httpClient.put(`${API_ENDPOINT}/accounts`, data, { headers: headers })
+			.subscribe(() => alert('Objeto atualizado com sucesso!'))
 	}
 }
