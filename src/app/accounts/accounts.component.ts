@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs'
+import { Observable, of } from 'rxjs'
 
 import { Account } from './account.model'
 
@@ -19,4 +19,14 @@ export class AccountsComponent implements OnInit {
   	this.accounts = this.service.getAccounts()
   }
 
+  public deleteAccount(account: Account): void {
+  	if(confirm(`Você realmente deseja excluir a conta ${account.Name}?`)){
+  		this.accounts.subscribe((data: Account[]) => {
+  			data.splice(data.indexOf(account), 1)
+  			this.accounts = of(data)
+  		})
+
+  		this.service.deleteAccount(account.Id)
+  	}
+  }
 }

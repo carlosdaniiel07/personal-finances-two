@@ -45,4 +45,8 @@ export class AccountService {
 		this.httpClient.put(`${API_ENDPOINT}/accounts`, data, { headers: headers })
 			.subscribe(() => alert('Objeto atualizado com sucesso!'))
 	}
+
+	deleteAccount(accountId: number): Observable<Account> {
+		return this.httpClient.delete<Account>(`${API_ENDPOINT}/accounts/${accountId}`)
+	}
 }

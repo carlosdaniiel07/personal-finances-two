@@ -24,7 +24,7 @@
                                 class="form-group"
                             >
                                 <label>Name</label>
-                                <input formControlName="name" type="text" name="" class="form-control" value="{{account?.Name}}">
+                                <input formControlName="name" type="text" name="" class="form-control">
                                 <span *ngIf="!name.valid && name.touched" class="help-block">Required field</span>
                             </div>
                             <div 
@@ -43,7 +43,7 @@
                                         class="form-group"
                                     >
                                         <label>Initial balance</label>
-                                        <input formControlName="initialBalance" type="text" name="" class="form-control" value="{{account?.InitialBalance | number: '1.2-2'}}">
+                                        <input formControlName="initialBalance" type="text" name="" class="form-control">
                                         <span *ngIf="!initialBalance.valid && initialBalance.touched" class="help-block">Required field</span>
                                     </div>
                                 </div>

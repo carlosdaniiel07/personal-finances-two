@@ -44,8 +44,12 @@
 
                             <br/>
                             
-                            <a [routerLink]="['/accounts/edit', account.Id]" class="btn btn-sm btn-warning btn-flat pull-left"><i class="fa fa-pencil-square-o"></i> Edit account</a>
-                            <a href="#" class="btn btn-sm btn-danger btn-flat pull-left"><i class="fa fa-trash-o"></i> Delete account</a>
+                            <a [routerLink]="['/accounts/edit', account.Id]" class="btn btn-sm btn-warning btn-flat pull-left">
+                                <i class="fa fa-pencil-square-o"></i> Edit account
+                            </a>
+                            <a (click)="deleteAccount()" class="btn btn-sm btn-danger btn-flat pull-left">
+                                <i class="fa fa-trash-o"></i> Delete account
+                            </a>
                          </form>
                     </div>
                 </div>           

@@ -21,6 +21,8 @@ import { AccountsTableComponent } from './accounts/accounts-table/accounts-table
 import { AccountService } from './accounts/accounts.service';
 import { MovementService } from './movements/movements.service';
 import { CategoryService } from './categories/category.service';
+import { SubcategoryService } from './subcategories/subcategory.service';
+import { ProjectService } from './projects/project.service';
 
 import { AccountDetailsComponent } from './accounts/account-details/account-details.component';
 import { MovementsComponent } from './movements/movements.component';
@@ -34,6 +36,15 @@ import { CategoryDetailsComponent } from './categories/category-details/category
 import { CategorySubcategoriesComponent } from './categories/category-details/category-subcategories/category-subcategories.component';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
 import { CategoryMovementsComponent } from './categories/category-details/category-movements/category-movements.component';
+import { NewCategoryComponent } from './categories/new-category/new-category.component';
+import { EditCategoryComponent } from './categories/edit-category/edit-category.component';
+import { SubcategoriesTableComponent } from './subcategories/subcategories-table/subcategories-table.component';
+import { NewSubcategoryComponent } from './subcategories/new-subcategory/new-subcategory.component';
+import { SubcategoryDetailsComponent } from './subcategories/subcategory-details/subcategory-details.component';
+import { EditSubcategoryComponent } from './subcategories/edit-subcategory/edit-subcategory.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ProjectsTableComponent } from './projects/projects-table/projects-table.component';
+import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 
 registerLocaleData(ptBr)
 
@@ -58,7 +69,16 @@ registerLocaleData(ptBr)
     CategoryDetailsComponent,
     CategorySubcategoriesComponent,
     SubcategoriesComponent,
-    CategoryMovementsComponent
+    CategoryMovementsComponent,
+    NewCategoryComponent,
+    EditCategoryComponent,
+    SubcategoriesTableComponent,
+    NewSubcategoryComponent,
+    SubcategoryDetailsComponent,
+    EditSubcategoryComponent,
+    ProjectsComponent,
+    ProjectsTableComponent,
+    ProjectDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +90,8 @@ registerLocaleData(ptBr)
     AccountService,
     MovementService,
     CategoryService,
+    SubcategoryService,
+    ProjectService,
     {provide: LOCALE_ID, useValue: 'pt-BR'}
   ],
   bootstrap: [AppComponent]

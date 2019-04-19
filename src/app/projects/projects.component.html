@@ -1,12 +1,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Subcategories 
-            <small>Add, edit, remove and view your saved subcategories</small>
+            Projects  
+            <small>Add, edit, finish and manage your projects</small>
         </h1>
         <ol class="breadcrumb">
             <li><a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Subcategories</li>
+            <li class="active">Projects</li>
         </ol>
     </section>
 
@@ -17,16 +17,15 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-2">
-                        <a [routerLink]="['/new-subcategory']" class="btn btn-flat btn-block btn-success"><i class="fa fa-plus"></i> New subcategory</a>
+                        <a [routerLink]="['/new-project']" class="btn btn-flat btn-block btn-success"><i class="fa fa-thumb-tack"></i> New project</a>
                     </div>
                 </div>
 
                 <br/>
 
-                <finances-subcategories-table 
-                    [subcategories]="subcategories"
-                    (deleteSubcategoryEvent)="deleteSubcategory($event)"
-                ></finances-subcategories-table>
+                <finances-projects-table
+                    [projects]="projects"
+                ></finances-projects-table>
             </div>
             <!-- /.box-body -->
         </div>

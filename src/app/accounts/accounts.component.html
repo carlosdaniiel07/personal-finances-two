@@ -23,7 +23,10 @@
 
                 <br/>
 
-                <finances-accounts-table [accounts]="accounts"></finances-accounts-table>
+                <finances-accounts-table 
+                    (deleteAccountEvent)="deleteAccount($event)"
+                    [accounts]="accounts"
+                ></finances-accounts-table>
             </div>
             <!-- /.box-body -->
         </div>

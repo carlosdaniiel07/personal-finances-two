@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 
 import { Observable } from 'rxjs'
 
@@ -19,7 +19,8 @@ export class AccountDetailsComponent implements OnInit {
 
   movements: Observable<Movement[]>
 
-  constructor(private service: AccountService, private route: ActivatedRoute) { 
+  constructor(private service: AccountService, private route: ActivatedRoute,
+    private router: Router) { 
   }
 
   ngOnInit() {
@@ -32,6 +33,13 @@ export class AccountDetailsComponent implements OnInit {
 
     this.service.getAccountById(accountId).subscribe((response: Account) => this.account = response)
     this.movements = this.service.getAccountMovements(accountId)
+  }
+
+  public deleteAccount(): void {
+    if(confirm(`Você realmente deseja excluir a conta ${this.account.Name}?`)){
+      this.service.deleteAccount(this.account.Id)
+        .subscribe(() => this.router.navigateByUrl('/accounts'))
+    }
   }
 
   private initAccountDetailsForm(): void {

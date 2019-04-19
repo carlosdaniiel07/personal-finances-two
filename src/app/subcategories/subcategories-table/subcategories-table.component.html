@@ -1,0 +1,48 @@
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Editable</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let subcategory of subcategories | async">
+                <td>{{subcategory.Name}}</td>
+                <td>
+                    <span *ngIf="subcategory.Category.Type === 'C'" class="label label-success">
+                        Credit
+                    </span>
+                    <span *ngIf="subcategory.Category.Type === 'D'" class="label label-danger">
+                        Debit
+                    </span>
+                </td>
+                <td>{{subcategory.Category.Name}}</td>
+                <td class="text-center">
+                    <span *ngIf="subcategory.CanEdit" class="text-green">
+                        <i class="fa fa-check"></i>
+                    </span>
+                    <span *ngIf="!subcategory.CanEdit" class="text-red">
+                        <i class="fa fa-times"></i>
+                    </span>
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a [routerLink]="['/subcategories', subcategory.Id]" class="btn btn-flat btn-default">
+                            <i class="fa fa-eye"></i> View
+                        </a>
+                        <a [class.disabled]="!subcategory.CanEdit" [routerLink]="['/subcategories/edit', subcategory.Id]" class="btn btn-flat btn-default">
+                            <i class="fa fa-pencil-square-o"></i> Edit
+                        </a>
+                        <a [class.disabled]="!subcategory.CanEdit" (click)="deleteSubcategory(subcategory)" class="btn btn-flat btn-danger">
+                            <i class="fa fa-trash-o"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

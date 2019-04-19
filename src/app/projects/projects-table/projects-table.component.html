@@ -1,0 +1,42 @@
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Started at</th>
+                <th>Budget</th>
+                <th>Budget used</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let project of projects | async">
+                <td>{{project.Name}}</td>
+                <td>{{project.StartDate | date: 'dd/MM/yyyy'}}</td>
+                <td>{{project.Budget | number: '1.2-2' }}</td>
+                <td>
+                	<div class="progress progress-xs" title="">
+						<div class="progress-bar progress-bar-danger"></div>
+					</div>
+                </td>
+                <td>
+                	<span class="label label-primary">{{project.ProjectStatus}}</span>
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a [routerLink]="['/projects', project.Id]" class="btn btn-flat btn-default">
+                            <i class="fa fa-eye"></i> View
+                        </a>
+                        <a [routerLink]="['/projects/edit', project.Id]" class="btn btn-flat btn-default">
+                            <i class="fa fa-pencil-square-o"></i> Edit
+                        </a>
+                        <a (click)="deleteProject(project)" class="btn btn-flat btn-danger">
+                            <i class="fa fa-trash-o"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

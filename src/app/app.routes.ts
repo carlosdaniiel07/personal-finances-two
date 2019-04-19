@@ -13,6 +13,15 @@ import { CategoriesComponent } from './categories/categories.component'
 import { CategoryDetailsComponent } from './categories/category-details/category-details.component'
 import { CategorySubcategoriesComponent } from './categories/category-details/category-subcategories/category-subcategories.component'
 import { CategoryMovementsComponent } from './categories/category-details/category-movements/category-movements.component'
+import { NewCategoryComponent } from './categories/new-category/new-category.component'
+import { EditCategoryComponent } from './categories/edit-category/edit-category.component'
+
+import { SubcategoriesComponent } from './subcategories/subcategories.component'
+import { NewSubcategoryComponent } from './subcategories/new-subcategory/new-subcategory.component'
+import { SubcategoryDetailsComponent } from './subcategories/subcategory-details/subcategory-details.component' 
+import { EditSubcategoryComponent } from './subcategories/edit-subcategory/edit-subcategory.component'
+
+import { ProjectsComponent } from './projects/projects.component'
 
 export const ROUTES: Routes = [
 	{path: '', component: DashboardComponent},
@@ -27,5 +36,12 @@ export const ROUTES: Routes = [
 		{path: '', redirectTo: 'movements', pathMatch: 'full'},
 		{path: 'movements', component: CategoryMovementsComponent },
 		{path: 'subcategories', component: CategorySubcategoriesComponent}
-	]}
+	]},
+	{path: 'new-category',  component: NewCategoryComponent},
+	{path: 'categories/edit/:id', component: EditCategoryComponent},
+	{path: 'subcategories', component: SubcategoriesComponent},
+	{path: 'new-subcategory', component: NewSubcategoryComponent},
+	{path: 'subcategories/:id', component: SubcategoryDetailsComponent},
+	{path: 'subcategories/edit/:id', component: EditSubcategoryComponent},
+	{path: 'projects', component: ProjectsComponent}
 ]

@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { Account } from './../account.model'
-import { AccountTypeSelect } from './account-type-select.model'
+import { AccountTypes } from './../account-types'
+import { Select } from './../../shared/select.model'
 
 import { AccountService } from './../accounts.service'
 
@@ -38,14 +39,8 @@ export class EditAccountComponent implements OnInit {
     this.service.updateAccount(account)
   }
 
-  public getAvailableAccountTypes(): AccountTypeSelect[] {
-    return [
-        {label: 'Checking', value: 1},
-        {label: 'Savings', value: 2},
-        {label: 'Salary', value: 3},
-        {label: 'Investment', value: 4},
-        {label: 'Wallet', value: 5}
-    ]
+  public getAvailableAccountTypes(): Select[] {
+    return AccountTypes
   }
 
   private initUpdateAccountForm(account: Account): void {

@@ -1,0 +1,55 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Edit subcategory  
+            <small>Edit an existing subcategory</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a [routerLink]="['/subcategories']">Subcategories</a></li>
+            <li class="active">Edit subcategory</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- box -->
+        <div class="box box-primary">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form [formGroup]="updateSubcategoryForm" role="form" novalidate>
+                            <div 
+                                [class.has-error]="!name.valid && name.touched" 
+                                class="form-group"
+                            >
+                                <label>Name</label>
+                                <input formControlName="name" type="text" name="" class="form-control">
+                                <span *ngIf="!name.valid && name.touched" class="help-block">Required field</span>
+                            </div>
+                            <div 
+                                [class.has-error]="!category.valid && category.touched"
+                                class="form-group"
+                            >
+                                <label>Category</label>
+                                <select formControlName="category" class="form-control">
+                                    <option 
+                                    	*ngFor="let option of availableCategories" 
+                                    	[value]="option.value"
+                                    >
+                                    ({{option.object.Type}}) - {{option.label}}
+                                	</option>
+                                </select>
+                            </div>
+
+                            <br/>
+                            
+                            <button (click)="updateSubcategory()" [disabled]="!updateSubcategoryForm.valid" type="button" class="btn btn-success btn-flat pull-left"><i class="fa fa-check"></i> Confirm</button>
+                         </form>
+                    </div>
+                </div>           
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </section>
