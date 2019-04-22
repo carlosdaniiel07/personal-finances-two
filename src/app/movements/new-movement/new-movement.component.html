@@ -1,0 +1,188 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            New movement 
+            <small>Add a new movement</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a [routerLink]="['/movements']">Movements</a></li>
+            <li class="active">New movement</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- box -->
+        <div 
+        	[class.box-success]="isCreditMovement()"
+        	[class.box-danger]="!isCreditMovement()" 
+        	class="box"
+        >
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <form [formGroup]="newMovementForm" role="form" novalidate>
+                            <div 
+                                [class.has-error]="!description.valid && description.touched" 
+                                class="form-group"
+                            >
+                                <label>Description</label>
+                                <input formControlName="description" type="text" name="" class="form-control">
+                                <span *ngIf="!description.valid && description.touched" class="help-block">Required field</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!type.valid && type.touched"
+                                        class="form-group"
+                                    >
+                                        <label>Type</label>
+                                        <select formControlName="type" class="form-control">
+                                            <option *ngFor="let option of getAvailableMovementTypes()" [value]="option.value">{{option.label}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!inclusionDate.valid && inclusionDate.touched"
+                                        class="form-group"
+                                    >
+                                        <label>Inclusion date</label>
+                                        <input formControlName="inclusionDate" type="text" name="" class="form-control" value="{{todayDate | date: 'dd/MM/yyyy'}}" readonly="">
+                                        <span *ngIf="!inclusionDate.valid && inclusionDate.touched" class="help-block">Required field</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!accountingDate.valid && accountingDate.touched"
+                                        class="form-group"
+                                    >
+                                        <label>Accounting date</label>
+                                        <input formControlName="accountingDate" type="text" name="" class="form-control" mask="00/00/0000">
+                                        <span *ngIf="!inclusionDate.valid && inclusionDate.touched" class="help-block">Required field</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!value.valid && value.touched"
+                                        class="form-group"
+                                    >
+                                        <label>Value</label>
+                                        <input formControlName="value" type="text" name="" class="form-control" mask="dot_separator.2">
+                                        <span *ngIf="!value.valid && value.touched" class="help-block">Required field</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Increase</label>
+                                        <input formControlName="increase" type="text" name="" class="form-control" mask="dot_separator.2">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Decrease</label>
+                                        <input formControlName="decrease" type="text" name="" class="form-control" mask="dot_separator.2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!account.valid && account.touched"
+                                        class="form-group"
+                                    >
+                                        <label>Account</label>
+                                        <select formControlName="account" class="form-control">
+                                            <option *ngFor="let option of availableAccounts" [value]="option.value">{{option.label}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div *ngIf="!isCreditMovement()" class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Credit card</label>
+                                        <select formControlName="creditCard" class="form-control">
+                                            <option *ngFor="let option of availableCreditCards" [value]="option.value">{{option.label}} - Balance: {{option.object.Balance | number: '1.2-2'}} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!category.valid && category.touched"
+                                        class="form-group"
+                                    >
+                                        <label>Category</label>
+                                        <select formControlName="category" class="form-control">
+                                            <option *ngFor="let option of availableCategories" [value]="option.value">{{option.label}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!subcategory.valid && subcategory.touched"
+                                        class="form-group"
+                                    >
+                                        <label>Subcategories</label>
+                                        <select formControlName="subcategory" class="form-control">
+                                            <option *ngFor="let option of availableSubcategories" [value]="option.value">{{option.label}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!project.valid && project.touched"
+                                        class="form-group"
+                                    >
+                                        <label>Project</label>
+                                        <select formControlName="project" class="form-control">
+                                            <option *ngFor="let option of availableProjects" [value]="option.value">{{option.label}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!status.valid && status.touched"
+                                        class="form-group"
+                                    >
+                                        <label>Status</label>
+                                        <select formControlName="status" class="form-control">
+                                            <option *ngFor="let option of getAvailableMovementStatus()" [value]="option.value">{{option.label}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-md-4">
+                            		<div class="checkbox">
+                            			<label title="If you check this field, the movement will be automatically launched when expires">
+                                        	<input formControlName="automaticallyLaunch" type="checkbox"> Automatically launch
+										</label>
+                                   	</div>
+                            	</div>
+                            </div>
+                            <div class="form-group">
+                            	<label>Observation</label>
+                            	<textarea formControlName="observation" class="form-control"></textarea>
+                            </div>
+
+                            <br/>
+                            
+                            <button (click)="insertMovement()" [disabled]="!newMovementForm.valid" type="button" class="btn btn-success btn-flat pull-left"><i class="fa fa-check"></i> Confirm</button>
+                         </form>
+                    </div>
+                </div>           
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </section>
