@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs'
+import { Observable, of } from 'rxjs'
 
 import { CreditCardService } from './credit-card.service'
 
@@ -17,5 +17,16 @@ export class CreditCardsComponent implements OnInit {
 
   ngOnInit() {
   	this.creditCards = this.service.getCreditCards()
+  }
+
+  public deleteCreditCard(creditCard: CreditCard): void {
+  	if(confirm('Voce realmente deseja excluir este cartao de credito?')){
+      this.creditCards.subscribe((data: CreditCard[]) => {
+      	data.splice(data.indexOf(creditCard), 1)
+      	this.creditCards = of(data)
+      })
+
+      this.service.deleteCreditCard(creditCard.Id).subscribe()
+    }
   }
 }

@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             
-                            <a [routerLink]="['/categories/edit', category.Id]" class="btn btn-sm btn-warning btn-flat pull-left">
+                            <a [class.disabled]="!category?.CanEdit" [routerLink]="['/categories/edit', category.Id]" class="btn btn-sm btn-warning btn-flat pull-left">
                                 <i class="fa fa-pencil-square-o"></i> Edit category
                             </a>
                             <a [class.disabled]="!category?.CanEdit" (click)="deleteCategory()" class="btn btn-sm btn-danger btn-flat pull-left">

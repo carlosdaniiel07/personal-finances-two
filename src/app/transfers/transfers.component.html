@@ -1,0 +1,30 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Transfers
+            <small>Add, edit, remove and view your transfers</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Transfers</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- box -->
+        <div class="box box-primary">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <a (click)="showIsInConstructionNotify()" class="btn btn-flat btn-block btn-success" style="cursor: pointer;"><i class="fa fa-exchange"></i> New transfer</a>
+                    </div>
+                </div>
+
+                <br/>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->

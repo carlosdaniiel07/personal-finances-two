@@ -27,14 +27,18 @@
                                 <input formControlName="name" type="text" name="" class="form-control">
                                 <span *ngIf="!name.valid && name.touched" class="help-block">Required field</span>
                             </div>
-                            <div 
-                                [class.has-error]="!type.valid && type.touched"
-                                class="form-group"
-                            >
-                                <label>Type</label>
-                                <select formControlName="type" class="form-control">
-                                    <option *ngFor="let option of getAvailableAccountTypes()" [value]="option.value">{{option.label}}</option>
-                                </select>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!type.valid && type.touched"
+                                        class="form-group"
+                                    >
+                                        <label>Type</label>
+                                        <select formControlName="type" class="form-control">
+                                            <option *ngFor="let option of getAvailableAccountTypes()" [value]="option.value">{{option.label}}</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
@@ -43,7 +47,7 @@
                                         class="form-group"
                                     >
                                         <label>Initial balance</label>
-                                        <input formControlName="initialBalance" type="text" name="" class="form-control">
+                                        <input formControlName="initialBalance" type="text" name="" class="form-control" mask="dot_separator.2">
                                         <span *ngIf="!initialBalance.valid && initialBalance.touched" class="help-block">Required field</span>
                                     </div>
                                 </div>

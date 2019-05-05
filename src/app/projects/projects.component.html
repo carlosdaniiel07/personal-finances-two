@@ -24,6 +24,7 @@
                 <br/>
 
                 <finances-projects-table
+                    (deleteProjectEvent)="deleteProject($event)"
                     [projects]="projects"
                 ></finances-projects-table>
             </div>

@@ -25,7 +25,9 @@ export class NewAccountComponent implements OnInit {
   	let account = new Account(undefined, this.name.value, this.type.value, this.initialBalance.value, undefined, undefined)
     
     this.service.insertAccount(account)
+    
     this.newAccountForm.reset()
+    this.type.setValue(this.getAvailableAccountTypes[0].value)
   }
 
   public getAvailableAccountTypes(): Select[] {

@@ -1,0 +1,102 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Pay invoice 
+            <small>Pay an invoice</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a [routerLink]="['/invoices', invoice.Id]">Invoice</a></li>
+            <li class="active">Pay invoice</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- box -->
+        <div class="box box-danger">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <form [formGroup]="payInvoiceForm" role="form" novalidate>
+                            <div 
+                                [class.has-error]="!description.valid && description.touched" 
+                                class="form-group"
+                            >
+                                <label>Description</label>
+                                <input formControlName="description" type="text" name="" class="form-control" readonly="">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!account.valid && account.touched"
+                                        class="form-group"
+                                    >
+                                        <label>Account</label>
+                                        <select formControlName="account" class="form-control">
+                                            <option *ngFor="let option of availableAccounts" [value]="option.value">{{option.label}}</option>
+                                        </select>
+                                        <span class="text-blue help-block"><i class="fa fa-info"></i> Saldo da conta: {{getBalanceOfSelectedAccount() | number: '1.2-2'}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!accountingDate.valid && accountingDate.touched"
+                                        class="form-group"
+                                    >
+                                        <label>Accounting date</label>
+                                        <input formControlName="accountingDate" type="text" name="" class="form-control" mask="00/00/0000" placeholder="dd/mm/yyyy" >
+                                        <span *ngIf="!accountingDate.valid && accountingDate.touched" class="help-block">Required field</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="(!value.valid && value.touched) || isGreaterThanInvoiceValue()"
+                                        class="form-group"
+                                    >
+                                        <label>Value</label>
+                                        <input formControlName="value" type="text" name="" class="form-control" mask="dot_separator.2">
+                                        
+                                        <span *ngIf="!value.valid && value.touched && !isGreaterThanInvoiceValue()" class="help-block">Required field</span>
+                                        <span *ngIf="isGreaterThanInvoiceValue()" class="help-block">Greater than invoice value ({{invoice.TotalValue | number: '1.2-2'}})</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!status.valid && status.touched"
+                                        class="form-group"
+                                    >
+                                        <label>Status</label>
+                                        <select (change)="onMovementStatusChange()" formControlName="status" class="form-control">
+                                            <option *ngFor="let option of getAvailableMovementStatus()" [value]="option.value">{{option.label}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-md-4">
+                            		<div class="checkbox">
+                            			<label title="If you check this field, the movement will be automatically launched when expires">
+                                        	<input formControlName="automaticallyLaunch" type="checkbox"> Automatically launch
+										</label>
+                                   	</div>
+                            	</div>
+                            </div>
+                            <div class="form-group">
+                            	<label>Observation</label>
+                            	<textarea formControlName="observation" class="form-control"></textarea>
+                            </div>
+
+                            <br/>
+                            
+                            <button (click)="payInvoice()" [disabled]="!payInvoiceForm.valid" type="button" class="btn btn-success btn-flat pull-left"><i class="fa fa-check"></i> Confirm</button>
+                         </form>
+                    </div>
+                </div>           
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </section>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Observable } from 'rxjs'
 
@@ -10,10 +10,14 @@ import { Project } from './../project.model'
 })
 export class ProjectsTableComponent implements OnInit {
   @Input() projects: Observable<Project[]>
+  @Output() deleteProjectEvent = new EventEmitter()
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  public deleteProject(project: Project): void {
+  	this.deleteProjectEvent.emit(project)
+  }
 }

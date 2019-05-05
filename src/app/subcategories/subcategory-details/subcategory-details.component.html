@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             
-                            <a [routerLink]="['/subcategories/edit', subcategory.Id]" class="btn btn-sm btn-warning btn-flat pull-left">
+                            <a [class.disabled]="!subcategory?.CanEdit" [routerLink]="['/subcategories/edit', subcategory.Id]" class="btn btn-sm btn-warning btn-flat pull-left">
                                 <i class="fa fa-pencil-square-o"></i> Edit subcategory
                             </a>
                             <a [class.disabled]="!subcategory?.CanEdit" (click)="deleteSubcategory()" class="btn btn-sm btn-danger btn-flat pull-left">

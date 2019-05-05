@@ -17,7 +17,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-2">
-                        <a [routerLink]="['new-credit-card']" class="btn btn-flat btn-block btn-success"><i class="fa fa-credit-card"></i> New card</a>
+                        <a [routerLink]="['/new-credit-card']" class="btn btn-flat btn-block btn-success"><i class="fa fa-credit-card"></i> New card</a>
                     </div>
                 </div>
 
@@ -25,6 +25,7 @@
 
                 <finances-credit-cards-table
                     [creditCards]="creditCards"
+                    (deleteCreditCardEvent)="deleteCreditCard($event)"
                 >
                 </finances-credit-cards-table>
             </div>

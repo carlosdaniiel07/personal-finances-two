@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms'
+import { NgxMaskModule } from 'ngx-mask'
 
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
@@ -23,6 +24,8 @@ import { MovementService } from './movements/movements.service';
 import { CategoryService } from './categories/category.service';
 import { SubcategoryService } from './subcategories/subcategory.service';
 import { ProjectService } from './projects/project.service';
+import { CreditCardService } from './credit-cards/credit-card.service'
+import { InvoiceService } from './invoices/invoice.service'
 
 import { AccountDetailsComponent } from './accounts/account-details/account-details.component';
 import { MovementsComponent } from './movements/movements.component';
@@ -45,6 +48,23 @@ import { EditSubcategoryComponent } from './subcategories/edit-subcategory/edit-
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectsTableComponent } from './projects/projects-table/projects-table.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
+import { NewProjectComponent } from './projects/new-project/new-project.component';
+import { EditProjectComponent } from './projects/edit-project/edit-project.component';
+import { CreditCardsComponent } from './credit-cards/credit-cards.component';
+import { CreditCardsTableComponent } from './credit-cards/credit-cards-table/credit-cards-table.component';
+import { NewCreditCardComponent } from './credit-cards/new-credit-card/new-credit-card.component';
+import { CreditCardDetailsComponent } from './credit-cards/credit-card-details/credit-card-details.component';
+import { CreditCardMovementsComponent } from './credit-cards/credit-card-details/credit-card-movements/credit-card-movements.component';
+import { CreditCardInvoicesComponent } from './credit-cards/credit-card-details/credit-card-invoices/credit-card-invoices.component';
+import { EditCreditCardComponent } from './credit-cards/edit-credit-card/edit-credit-card.component';
+import { TransfersComponent } from './transfers/transfers.component';
+import { NewMovementComponent } from './movements/new-movement/new-movement.component';
+import { MovementDetailsComponent } from './movements/movement-details/movement-details.component';
+import { EditMovementComponent } from './movements/edit-movement/edit-movement.component';
+import { CreditCardInvoicesItemComponent } from './credit-cards/credit-card-details/credit-card-invoices/credit-card-invoices-item/credit-card-invoices-item.component';
+import { InvoiceDetailsComponent } from './invoices/invoice-details/invoice-details.component';
+import { InvoiceDetailsPayComponent } from './invoices/invoice-details/invoice-details-pay/invoice-details-pay.component';
+import { InvoiceDetailsPrintComponent } from './invoices/invoice-details/invoice-details-print/invoice-details-print.component';
 
 registerLocaleData(ptBr)
 
@@ -78,13 +98,31 @@ registerLocaleData(ptBr)
     EditSubcategoryComponent,
     ProjectsComponent,
     ProjectsTableComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    NewProjectComponent,
+    EditProjectComponent,
+    CreditCardsComponent,
+    CreditCardsTableComponent,
+    NewCreditCardComponent,
+    CreditCardDetailsComponent,
+    CreditCardMovementsComponent,
+    CreditCardInvoicesComponent,
+    EditCreditCardComponent,
+    TransfersComponent,
+    NewMovementComponent,
+    MovementDetailsComponent,
+    EditMovementComponent,
+    CreditCardInvoicesItemComponent,
+    InvoiceDetailsComponent,
+    InvoiceDetailsPayComponent,
+    InvoiceDetailsPrintComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     AccountService,
@@ -92,6 +130,8 @@ registerLocaleData(ptBr)
     CategoryService,
     SubcategoryService,
     ProjectService,
+    CreditCardService,
+    InvoiceService,
     {provide: LOCALE_ID, useValue: 'pt-BR'}
   ],
   bootstrap: [AppComponent]

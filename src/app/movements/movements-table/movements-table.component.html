@@ -9,11 +9,11 @@
                 <th>Account</th>
                 <th>Category</th>
                 <th>Credit card</th>
-                <th>Project</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let movement of movements">
+            <tr *ngFor="let movement of movements | async">
                 <td>{{movement.AccountingDate | date: 'dd/MM/yyyy'}}</td>
                 <td>
                     <span *ngIf="movement.Type == 'C'; else elseBlock" class="label label-success">Credit</span>
@@ -26,10 +26,17 @@
                 <td>{{movement.Account.Name}}</td>
                 <td>{{movement.Category.Name}}</td>
                 <td class="text-center">
-                    <i *ngIf="movement.Invoice != undefined" class="fa fa-check text-green"></i>
-                    <i *ngIf="movement.Invoice === undefined" class="fa fa-times text-red"></i>
+                    <i *ngIf="isCreditCardMovement(movement)" class="fa fa-check text-green"></i>
+                    <i *ngIf="!isCreditCardMovement(movement)" class="fa fa-times text-red"></i>
                 </td>
-                <td>{{movement.Project?.Name}}</td>
+                <td>
+                    <span *ngIf="isLaunched(movement)" class="text-green">
+                        <i class="fa fa-check"></i>                         {{movement.MovementStatus}} 
+                    </span>
+                    <span *ngIf="!isLaunched(movement)" class="text-yellow"> 
+                        <i class="fa fa-exclamation-triangle"></i> {{movement.MovementStatus}}
+                    </span>
+                </td>
                 <td>
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -37,10 +44,21 @@
                             <span class="fa fa-caret-down"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-eye"></i> Details</a></li>
-                            <li><a href="#"><i class="fa fa-pencil-square-o"></i> Edit</a></li>
+                            <li>
+                                <a [routerLink]="['/movements', movement.Id]"><i class="fa fa-eye"></i> Details</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/edit-movement', movement.Id]"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                            </li>
                             <li class="divider"></li>
-                            <li><a href="#"><i class="fa fa-trash"></i> Remove</a></li>
+                            <li *ngIf="!isLaunched(movement) && !isCreditCardMovement(movement)">
+                                <a (click)="launchMovement(movement)" style="cursor: pointer;">
+                                    <i class="fa fa-check"></i> Launch
+                                </a>
+                            </li>
+                            <li>
+                                <a (click)="deleteMovement(movement)" style="cursor: pointer;"><i class="fa fa-trash"></i> Remove</a>
+                            </li>
                         </ul>
                     </div>
                 </td>

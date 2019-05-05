@@ -5,36 +5,39 @@ import { Project } from './../projects/project.model'
 import { Invoice } from './../invoices/invoice.model'
 import { Select } from './../shared/select.model'
 
-export interface Movement {
-	Id: number
-	Type: string
-	Description: string
-	Value: number
-	Increase?: number
-	Decrease?: number
-	InclusionDate: string
-	AccountingDate: string
+export class Movement {
+	constructor(
+		public Id: number,
+		public Type: string,
+		public Description: string,
+	 	public Value: number,
+		public InclusionDate: string,
+	    public AccountingDate: string,
+	   
+	   	public Account: Account,
+		public AccountId: number,
 
-	Account: Account
-	AccountId: number
+		public Category: Category,
+		public CategoryId: number,
 
-	Category: Category
-	CategoryId: number
+		public Subcategory: Subcategory,
+		public SubcategoryId: number,
 
-	Subcategory: Subcategory
-	SubcategoryId: number
+		public MovementStatus: string,
+		public Observation: string,
+		public CanEdit: boolean,
+		public AutomaticallyLaunch: boolean,
+		public TotalValue: number,
 
-	Project?: Project
-	ProjectId: number
+		public Increase?: number,
+		public Decrease?: number,
 
-	Invoice?: Invoice
-	InvoiceId: number
+		public Project?: Project,
+		public ProjectId?: number,
 
-	MovementStatus: string
-	Observation: string
-	CanEdit: boolean
-	AutomaticallyLaunch: boolean
-	TotalValue: number
+		public Invoice?: Invoice,
+		public InvoiceId?: number
+	) {}
 }
 
 export const MovementStatus: Select[] = [

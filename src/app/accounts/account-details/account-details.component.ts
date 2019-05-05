@@ -9,6 +9,8 @@ import { Movement } from './../../movements/movements.model'
 
 import { AccountService } from './../accounts.service'
 
+import { Util } from './../../shared/util.functions'
+
 @Component({
   selector: 'finances-account-details',
   templateUrl: './account-details.component.html'
@@ -36,10 +38,12 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   public deleteAccount(): void {
-    if(confirm(`Você realmente deseja excluir a conta ${this.account.Name}?`)){
-      this.service.deleteAccount(this.account.Id)
-        .subscribe(() => this.router.navigateByUrl('/accounts'))
-    }
+    Util.confirmNotify('Do you realy want to delete this account?').then((value) => {
+      if(value){
+        Util.successNotify('Account deleted!')
+        this.service.deleteAccount(this.account.Id).subscribe(() => this.router.navigateByUrl('/accounts'))
+      }
+    })
   }
 
   private initAccountDetailsForm(): void {
@@ -49,6 +53,18 @@ export class AccountDetailsComponent implements OnInit {
       initialBalance: new FormControl(''),
       balance: new FormControl('')  
     })
+  }
+
+  public adjustAccountBalance(movement: Movement): void {
+    let isMovementLaunched: boolean = movement.MovementStatus == 'Launched'
+
+    if(isMovementLaunched){
+      if(movement.Type === 'C'){
+        this.account.Balance = this.account.Balance - movement.TotalValue
+      } else {
+        this.account.Balance = this.account.Balance + movement.TotalValue
+      }
+    }
   }
 
   // get properties (accountDetailsForm)

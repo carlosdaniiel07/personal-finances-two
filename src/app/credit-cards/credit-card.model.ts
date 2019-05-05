@@ -5,6 +5,7 @@ export class CreditCard {
 		public InvoiceClosure: string,
 		public PayDay: string,
 		public Limit: number,
-		public Enabled: boolean 
+		public Enabled: boolean,
+		public RemainingLimit?: number 
 	) {}
 }

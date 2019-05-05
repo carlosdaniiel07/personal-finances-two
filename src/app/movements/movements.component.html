@@ -23,7 +23,11 @@
 
                 <br/>
 
-                <finances-movements-table></finances-movements-table>
+                <finances-movements-table
+                    [movements]="movements"
+                    (deleteMovementEvent)="deleteMovement($event)" 
+                    (launchMovementEvent)="launchMovement($event)"
+                ></finances-movements-table>
             </div>
             <!-- /.box-body -->
         </div>

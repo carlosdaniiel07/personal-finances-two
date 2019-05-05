@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 import { Observable } from 'rxjs'
 
@@ -17,6 +17,8 @@ import { Category } from './../categories/category.model'
 import { Subcategory } from './../subcategories/subcategory.model'
 import { Project } from './../projects/project.model'
 import { CreditCard } from './../credit-cards/credit-card.model'
+
+import { Util } from './../shared/util.functions'
 
 @Injectable()
 export class MovementService {
@@ -57,5 +59,32 @@ export class MovementService {
 
 	public getAllCreditCards(): Observable<CreditCard[]> {
 		return this.creditCardService.getCreditCards()
+	}
+
+	// insert a new movement
+	public insertMovement(movement: any): Observable<Movement> {
+		let data = JSON.stringify(movement)
+		let headers = new HttpHeaders().append('Content-Type', 'application/json')
+
+		return this.httpClient.post<Movement>(`${API_ENDPOINT}/movements`, data, { headers: headers })
+	}
+
+	// update a movement
+	public updateMovement(movement: any): void {
+		let data = JSON.stringify(movement)
+		let headers = new HttpHeaders().append('Content-Type', 'application/json')
+
+		this.httpClient.put(`${API_ENDPOINT}/movements`, data, { headers: headers })
+			.subscribe(() => Util.successNotify('Movement updated!'))
+	}
+
+	// delete a movement
+	public deleteMovement(movementId: number): Observable<Movement> {
+		return this.httpClient.delete<Movement>(`${API_ENDPOINT}/movements/${movementId}`)
+	}
+
+	// launch movement
+	public launchMovement(movementId: number): Observable<Movement> {
+		return this.httpClient.put<Movement>(`${API_ENDPOINT}/movements/launch/${movementId}`, null, { headers: null })
 	}
  }

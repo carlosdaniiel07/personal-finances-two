@@ -1,0 +1,85 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Credit card details 
+            <small>View and manage your credit card</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a [routerLink]="['/credit-cards']">Credit cards</a></li>
+            <li class="active">Credit card details </li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- box -->
+        <div class="box box-primary">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form [formGroup]="creditCardDetailsForm" role="form" novalidate>
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input formControlName="name" type="text" name="" class="form-control" readonly="">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Invoice closure</label>
+                                        <input formControlName="invoiceClosure" type="text" name="" class="form-control" readonly="">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Pay day</label>
+                                        <input formControlName="payDay" type="text" name="" class="form-control" readonly="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Limit</label>
+                                        <input formControlName="limit" type="text" name="" class="form-control" value="{{creditCard?.Limit | number: '1.2-2'}}" readonly="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Remaining limit</label>
+                                        <input formControlName="remainingLimit" type="text" name="" class="form-control" value="{{creditCard?.RemainingLimit | number: '1.2-2'}}" readonly="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br/>
+                            
+                            <a [routerLink]="['/credit-cards/edit', creditCard.Id]" class="btn btn-sm btn-warning btn-flat pull-left">
+                                <i class="fa fa-pencil-square-o"></i> Edit card
+                            </a>
+                            <a (click)="deleteCreditCard()" class="btn btn-sm btn-danger btn-flat pull-left">
+                                <i class="fa fa-trash-o"></i> Delete card
+                            </a>
+                         </form>
+                    </div>
+                </div>           
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box --> 
+
+        <!--Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li routerLinkActive="active"><a [routerLink]="['invoices']">Invoices</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active">
+                    <router-outlet></router-outlet>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom --> 
+    </section>

@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+
 import { Observable } from 'rxjs'
 
 import { Account } from './account.model'
 import { Movement } from './../movements/movements.model'
 
 import { API_ENDPOINT } from './../app.api'
+
+import { Util } from './../shared/util.functions'
 
 @Injectable()
 export class AccountService {
@@ -34,7 +37,7 @@ export class AccountService {
 		let headers = new HttpHeaders().append('Content-Type', 'application/json')
 
 		this.httpClient.post(`${API_ENDPOINT}/accounts`, data, { headers: headers })
-			.subscribe(() => alert('Objeto inserido com sucesso!'))
+			.subscribe(() => Util.successNotify('Account inserted!'))
 	}
 
 	// update an account
@@ -43,7 +46,7 @@ export class AccountService {
 		let headers = new HttpHeaders().append('Content-Type', 'application/json')
 
 		this.httpClient.put(`${API_ENDPOINT}/accounts`, data, { headers: headers })
-			.subscribe(() => alert('Objeto atualizado com sucesso!'))
+			.subscribe(() => Util.successNotify('Account updated!'))
 	}
 
 	deleteAccount(accountId: number): Observable<Account> {

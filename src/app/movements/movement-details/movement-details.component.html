@@ -1,0 +1,165 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Movement details 
+            <small>View movement details</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a [routerLink]="['/movements']">Movements</a></li>
+            <li class="active">Movement details</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- box -->
+        <div 
+        	[class.box-success]="isCreditMovement()"
+        	[class.box-danger]="!isCreditMovement()" 
+        	class="box"
+        >
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <form [formGroup]="movementDetailsForm" role="form" novalidate>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input formControlName="description" type="text" name="" class="form-control" readonly="">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Type</label>
+                                        <input formControlName="type" type="text" name="" class="form-control" readonly="">      
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Inclusion date</label>
+                                        <input formControlName="inclusionDate" type="text" name="" class="form-control" value="{{movement?.InclusionDate | date: 'dd/MM/yyyy'}}" readonly="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Accounting date</label>
+                                        <input formControlName="accountingDate" type="text" name="" class="form-control" value="{{movement?.AccountingDate | date: 'dd/MM/yyyy'}}" readonly="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Value</label>
+                                        <input formControlName="value" type="text" name="" class="form-control" value="{{movement?.Value | number: '1.2-2'}}" readonly="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Increase</label>
+                                        <input formControlName="increase" type="text" name="" class="form-control" value="{{movement?.Increase | number: '1.2-2'}}" readonly="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Decrease</label>
+                                        <input formControlName="decrease" type="text" name="" class="form-control" value="{{movement?.Decrease | number: '1.2-2'}}" readonly="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Account</label>
+                                        <input formControlName="account" type="text" name="" class="form-control" readonly="">
+                                        <span class="help-block text-blue link">
+                                            <i class="fa fa-link"></i>&nbsp; 
+                                            <a [routerLink]="['/accounts', movement?.Account.Id]">Details</a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div *ngIf="!isCreditMovement()" class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Credit card</label>
+                                        <input formControlName="creditCard" type="text" name="" class="form-control" readonly="">
+                                        <span *ngIf="isCreditCardMovement()" class="help-block text-blue">
+                                            <i class="fa fa-link"></i>&nbsp; 
+                                            <a [routerLink]="['/credit-cards', movement?.Invoice.CreditCard.Id]">Details</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Category</label>
+                                        <input formControlName="category" type="text" name="" class="form-control" readonly="">
+                                        <span class="help-block text-blue">
+                                            <i class="fa fa-link"></i>&nbsp; 
+                                            <a [routerLink]="['/categories', movement?.Category.Id]">Details</a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Subcategory</label>
+                                        <input formControlName="subcategory" type="text" name="" class="form-control" readonly="">
+                                        <span class="help-block text-blue">
+                                            <i class="fa fa-link"></i>&nbsp;
+                                            <a [routerLink]="['/subcategories', movement?.Subcategory.Id]">Details</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Project</label>
+                                        <input formControlName="project" type="text" name="" class="form-control" readonly="">
+                                        <span *ngIf="movementHasProject()" class="help-block text-blue">
+                                            <i class="fa fa-link"></i>&nbsp; 
+                                            <a [routerLink]="['/projects', movement?.Project.Id]">Details</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <input formControlName="status" type="text" name="" class="form-control" readonly="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-md-4">
+                            		<div class="checkbox">
+                            			<label title="If you check this field, the movement will be automatically launched when expires">
+                                        	<input formControlName="automaticallyLaunch" type="checkbox"> Automatically launch
+										</label>
+                                   	</div>
+                            	</div>
+                            </div>
+                            <div class="form-group">
+                            	<label>Observation</label>
+                            	<textarea formControlName="observation" class="form-control" readonly=""></textarea>
+                            </div>
+
+                            <br/>
+                            
+                            <a [routerLink]="['/edit-movement', movement.Id]" class="btn btn-sm btn-warning btn-flat pull-left">
+                                <i class="fa fa-pencil-square-o"></i> Edit movement
+                            </a>
+                            <a (click)="deleteMovement()" class="btn btn-sm btn-danger btn-flat pull-left">
+                                <i class="fa fa-trash-o"></i> Delete movement
+                            </a>
+                         </form>
+                    </div>
+                </div>           
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </section>

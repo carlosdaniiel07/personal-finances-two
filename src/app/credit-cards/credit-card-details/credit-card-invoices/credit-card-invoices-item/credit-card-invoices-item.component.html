@@ -1,0 +1,14 @@
+<a [routerLink]="['/invoices', invoice.Id]">
+	<div class="info-box bg-aqua">
+		<span class="info-box-icon"><i class="fa fa-dollar"></i></span>
+		<div class="info-box-content">
+	    	<span class="info-box-text">Invoice #{{invoice.Id}}</span>
+	        <span class="info-box-number">{{invoice.Reference}}</span>
+	        <span class="progress-description">
+	        	R$ {{invoice.TotalValue | number: '1.2-2'}} - ({{invoice.InvoiceStatus}})
+	        </span>
+	   	</div>
+	    <!-- /.info-box-content -->
+	</div>
+	<!-- /.info-box -->
+</a>

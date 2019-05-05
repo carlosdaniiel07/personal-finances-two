@@ -47,7 +47,7 @@
                                         class="form-group"
                                     >
                                         <label>Initial balance</label>
-                                        <input formControlName="initialBalance" type="text" name="" class="form-control" value="{{account?.InitialBalance | number: '1.2-2'}}">
+                                        <input formControlName="initialBalance" type="text" name="" class="form-control" value="{{account?.InitialBalance | number: '1.2-2'}}" mask="dot_separator.2">
                                         <span *ngIf="!initialBalance.valid && initialBalance.touched" class="help-block">Obrigatório</span>
                                     </div>
                                 </div>

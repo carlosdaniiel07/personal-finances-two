@@ -1,0 +1,81 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            New credit card 
+            <small>Add a new card</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a [routerLink]="['/credit-cards']">Credit cards</a></li>
+            <li class="active">New credit card</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- box -->
+        <div class="box box-primary">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form [formGroup]="newCreditCardForm" role="form" novalidate>
+                            <div 
+                                [class.has-error]="!name.valid && name.touched" 
+                                class="form-group"
+                            >
+                                <label>Name</label>
+                                <input formControlName="name" type="text" name="" class="form-control">
+                                <span *ngIf="!name.valid && name.touched" class="help-block">Required field</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div
+                                        [class.has-error]="!invoiceClosure.valid && invoiceClosure.touched" 
+                                        class="form-group"
+                                    >
+                                        <label>Invoice closure</label>
+                                        <select formControlName="invoiceClosure" class="form-control">
+                                            <option *ngFor="let option of getAvailableDays()" value="{{option.value}}">
+                                                {{option.label}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div
+                                        [class.has-error]="!payDay.valid && payDay.touched" 
+                                        class="form-group"
+                                    >
+                                        <label>Pay day</label>
+                                        <select formControlName="payDay" class="form-control">
+                                            <option *ngFor="let option of getAvailableDays()" value="{{option.value}}">
+                                                {{option.label}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div 
+                                        [class.has-error]="!limit.valid && limit.touched" 
+                                        class="form-group"
+                                    >
+                                        <label>Limit</label>
+                                        <input formControlName="limit" type="text" name="" class="form-control" mask="dot_separator.2">
+                                        <span *ngIf="!limit.valid && limit.touched" class="help-block">Required field</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br/>
+                            
+                            <button (click)="newCreditCard()" [disabled]="!newCreditCardForm.valid" type="button" class="btn btn-success btn-flat pull-left"><i class="fa fa-check"></i> Confirm</button>
+                         </form>
+                    </div>
+                </div>           
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->  
+    </section>

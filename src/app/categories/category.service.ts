@@ -9,6 +9,8 @@ import { Category } from './category.model'
 import { Movement } from './../movements/movements.model'
 import { Subcategory } from './../subcategories/subcategory.model'
 
+import { Util } from './../shared/util.functions'
+
 @Injectable()
 export class CategoryService {
 	constructor(private http: HttpClient) {
@@ -40,7 +42,7 @@ export class CategoryService {
 		let headers = new HttpHeaders().append('Content-Type', 'application/json')
 
 		this.http.post(`${API_ENDPOINT}/categories`, data, { headers: headers })
-			.subscribe(() => alert('Objeto inserido com sucesso!'))
+			.subscribe(() => Util.successNotify('Category inserted!'))
 	}
 
 	// update a existing category
@@ -49,7 +51,7 @@ export class CategoryService {
 		let headers = new HttpHeaders().append('Content-Type', 'application/json')
 
 		this.http.put(`${API_ENDPOINT}/categories`, data, { headers: headers })
-			.subscribe(() => alert('Objeto atualizado com sucesso!'))
+			.subscribe(() => Util.successNotify('Category updated!'))
 	}
 
 	public deleteCategory(categoryId: number): Observable<Category> {

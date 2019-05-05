@@ -38,7 +38,7 @@
                                         class="form-group"
                                     >
                                         <label>Type</label>
-                                        <select formControlName="type" class="form-control">
+                                        <select (change)="onMovementTypeChange()" formControlName="type" class="form-control">
                                             <option *ngFor="let option of getAvailableMovementTypes()" [value]="option.value">{{option.label}}</option>
                                         </select>
                                     </div>
@@ -47,22 +47,12 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div 
-                                        [class.has-error]="!inclusionDate.valid && inclusionDate.touched"
-                                        class="form-group"
-                                    >
-                                        <label>Inclusion date</label>
-                                        <input formControlName="inclusionDate" type="text" name="" class="form-control" value="{{todayDate | date: 'dd/MM/yyyy'}}" readonly="">
-                                        <span *ngIf="!inclusionDate.valid && inclusionDate.touched" class="help-block">Required field</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div 
                                         [class.has-error]="!accountingDate.valid && accountingDate.touched"
                                         class="form-group"
                                     >
                                         <label>Accounting date</label>
-                                        <input formControlName="accountingDate" type="text" name="" class="form-control" mask="00/00/0000">
-                                        <span *ngIf="!inclusionDate.valid && inclusionDate.touched" class="help-block">Required field</span>
+                                        <input formControlName="accountingDate" type="text" name="" class="form-control" mask="00/00/0000" placeholder="dd/mm/yyyy" >
+                                        <span *ngIf="!accountingDate.valid && accountingDate.touched" class="help-block">Required field</span>
                                     </div>
                                 </div>
                             </div>
@@ -100,14 +90,16 @@
                                         <select formControlName="account" class="form-control">
                                             <option *ngFor="let option of availableAccounts" [value]="option.value">{{option.label}}</option>
                                         </select>
+                                        <span class="text-blue help-block"><i class="fa fa-info"></i> Saldo da conta: {{getBalanceOfSelectedAccount() | number: '1.2-2'}}</span>
                                     </div>
                                 </div>
                                 <div *ngIf="!isCreditMovement()" class="col-md-4">
                                     <div class="form-group">
                                         <label>Credit card</label>
                                         <select formControlName="creditCard" class="form-control">
-                                            <option *ngFor="let option of availableCreditCards" [value]="option.value">{{option.label}} - Balance: {{option.object.Balance | number: '1.2-2'}} </option>
+                                            <option *ngFor="let option of availableCreditCards" [value]="option.value">{{option.label}}</option>
                                         </select>
+                                        <span class="text-blue help-block"><i class="fa fa-info"></i> Limite restante: {{getRemainingLimitOfSelectedCreditCard() | number: '1.2-2'}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -118,8 +110,8 @@
                                         class="form-group"
                                     >
                                         <label>Category</label>
-                                        <select formControlName="category" class="form-control">
-                                            <option *ngFor="let option of availableCategories" [value]="option.value">{{option.label}}</option>
+                                        <select (change)="onCategoryChange()" formControlName="category" class="form-control">
+                                            <option *ngFor="let option of availableCategoriesFiltered" [value]="option.value">{{option.label}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -128,9 +120,9 @@
                                         [class.has-error]="!subcategory.valid && subcategory.touched"
                                         class="form-group"
                                     >
-                                        <label>Subcategories</label>
+                                        <label>Subcategory</label>
                                         <select formControlName="subcategory" class="form-control">
-                                            <option *ngFor="let option of availableSubcategories" [value]="option.value">{{option.label}}</option>
+                                            <option *ngFor="let option of availableSubcategoriesFiltered" [value]="option.value">{{option.label}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -155,7 +147,7 @@
                                         class="form-group"
                                     >
                                         <label>Status</label>
-                                        <select formControlName="status" class="form-control">
+                                        <select (change)="onMovementStatusChange()" formControlName="status" class="form-control">
                                             <option *ngFor="let option of getAvailableMovementStatus()" [value]="option.value">{{option.label}}</option>
                                         </select>
                                     </div>

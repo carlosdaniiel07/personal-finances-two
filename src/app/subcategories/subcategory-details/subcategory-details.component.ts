@@ -9,6 +9,8 @@ import { Movement } from './../../movements/movements.model'
 
 import { SubcategoryService } from './../subcategory.service'
 
+import { Util } from './../../shared/util.functions'
+
 @Component({
   selector: 'finances-subcategory-details',
   templateUrl: './subcategory-details.component.html'
@@ -58,11 +60,14 @@ export class SubcategoryDetailsComponent implements OnInit {
   }
 
   public deleteSubcategory(): void {
-    if(confirm(`Voce deseja realmente excluir a subcategory ${this.subcategory.Name}?`)){
-      this.service.deleteSubcategory(this.subcategory.Id).subscribe(() => {
-        this.route.navigateByUrl('/subcategories')
-      })
-    }
+    Util.confirmNotify('Do you realy want to delete this subcategory?').then((value) => {
+      if(value){
+        this.service.deleteSubcategory(this.subcategory.Id).subscribe(() => {
+          Util.successNotify('Subcategory deleted!')
+          this.route.navigateByUrl('/subcategories')
+        })
+      }
+    })
   }
 
   get name() { return this.subcategoryDetailsForm.get('name') } 

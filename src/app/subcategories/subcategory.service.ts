@@ -11,6 +11,8 @@ import {API_ENDPOINT} from './../app.api'
 
 import { CategoryService } from './../categories/category.service'
 
+import { Util } from './../shared/util.functions'
+
 @Injectable()
 export class SubcategoryService {
 	constructor(private categoryService: CategoryService, private http: HttpClient){
@@ -41,7 +43,7 @@ export class SubcategoryService {
 		let headers = new HttpHeaders().append('Content-Type', 'application/json')
 
 		this.http.post(`${API_ENDPOINT}/subcategories`, data, { headers: headers })
-			.subscribe(() => alert('Objeto inserido com sucesso!'))
+			.subscribe(() => Util.successNotify('Category inserted!'))
 	}
 
 	// update a subcategory
@@ -50,7 +52,7 @@ export class SubcategoryService {
 		let headers = new HttpHeaders().append('Content-Type', 'application/json')
 
 		this.http.put(`${API_ENDPOINT}/subcategories`, data, { headers: headers })
-			.subscribe(() => alert('Objeto atualizado com sucesso!'))
+			.subscribe(() => Util.successNotify('Category updated!'))
 	}
 
 	// delete a subcategory

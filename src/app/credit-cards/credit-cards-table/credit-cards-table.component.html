@@ -7,20 +7,16 @@
                 <th>Remaining limit</th>
                 <th>Closure day</th>
                 <th>Pay day</th>
-                <th>Invoice</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let creditCard of creditCards | async">
                 <td>{{creditCard.Name}}</td>
-                <td>{{creditCard.Limit}}</td>
-                <td>{{creditCard.Limit}}</td>
+                <td>{{creditCard.Limit | number: '1.2-2'}}</td>
+                <td>{{creditCard.RemainingLimit | number: '1.2-2'}}</td>
                 <td>{{creditCard.InvoiceClosure}}</td>
                 <td>{{creditCard.PayDay}}</td>
-                <td>
-                    <a class="btn btn-sm btn-primary disabled"><i class="fa fa-file-text-o"></i> Current invoice</a>
-                </td>
                 <td>
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -28,10 +24,10 @@
                             <span class="fa fa-caret-down"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-eye"></i> Details</a></li>
-                            <li><a href="#"><i class="fa fa-pencil-square-o"></i> Edit</a></li>
+                            <li><a [routerLink]="['/credit-cards', creditCard.Id]"><i class="fa fa-eye"></i> Details</a></li>
+                            <li><a [routerLink]="['/credit-cards/edit', creditCard.Id]"><i class="fa fa-pencil-square-o"></i> Edit</a></li>
                             <li class="divider"></li>
-                            <li><a href="#"><i class="fa fa-trash"></i> Remove</a></li>
+                            <li><a (click)="deleteCreditCard(creditCard)" style="cursor: pointer;"><i class="fa fa-trash"></i> Remove</a></li>
                         </ul>
                     </div>
                 </td>

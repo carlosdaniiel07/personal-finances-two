@@ -9,6 +9,8 @@ import { Movement } from './../../movements/movements.model'
 
 import { CategoryService } from './../category.service'
 
+import { Util } from './../../shared/util.functions'
+
 @Component({
   selector: 'finances-category-details',
   templateUrl: './category-details.component.html'
@@ -34,10 +36,14 @@ export class CategoryDetailsComponent implements OnInit {
   }
 
   public deleteCategory(): void {
-    if(confirm(`Você realmente deseja excluir a categoria ${this.category.Name}?`)){
-      this.service.deleteCategory(this.category.Id)
-        .subscribe(() => this.router.navigateByUrl('/categories'))
-    }
+    Util.confirmNotify('Do you realy want to delete this category?').then((value) => {
+      if(value){
+        this.service.deleteCategory(this.category.Id).subscribe(() => {
+          Util.successNotify('Category deleted!')
+          this.router.navigateByUrl('/categories')
+        })
+      }
+    })
   }
 
   private initForm(): void {

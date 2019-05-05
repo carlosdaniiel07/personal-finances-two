@@ -1,0 +1,110 @@
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Widget -->
+      <div class="box box-widget widget-user">
+        <div class="widget-user-header bg-aqua-active">
+          <h3 class="widget-user-username">Invoice #{{invoice.Id}}</h3>
+          <h5 class="widget-user-desc">{{invoice.Reference}}</h5>
+        </div>
+        <div class="box-footer">
+          <div class="row">
+            <div class="col-sm-2 border-right">
+              <div class="description-block">
+                <h5 class="description-header">
+                  <a [routerLink]="['/credit-cards', invoice.CreditCard.Id]">{{invoice.CreditCard.Name}}</a>
+                </h5>
+                <span class="description-text">Credit card</span>
+              </div>
+              <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-2 border-right">
+              <div class="description-block">
+                <h5 class="description-header">{{invoice.InvoiceStatus}}</h5>
+                <span class="description-text">Status</span>
+              </div>
+              <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-2">
+              <div class="description-block">
+                <h5 class="description-header">{{invoice.MaturityDate | date: 'dd/MM/yyyy'}}</h5>
+                <span class="description-text">Due date</span>
+              </div>
+              <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-2">
+              <div class="description-block">
+                <h5 *ngIf="invoice.PaymentDate != null" class="description-header">
+                  {{invoice.PaymentDate | date: 'dd/MM/yyyy'}}
+                </h5>
+                <h5 *ngIf="invoice.PaymentDate == null" class="description-header">
+                  (Not paid)
+                </h5>
+                <span class="description-text">Payment date</span>
+              </div>
+              <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-2">
+              <div class="description-block">
+                <h5 class="description-header">{{movementsCount}}</h5>
+                <span class="description-text">Movements</span>
+              </div>
+              <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-2">
+              <div class="description-block">
+                <h5 class="description-header">{{invoice.TotalValue | number: '1.2-2'}}</h5>
+                <span class="description-text">Total value</span>
+              </div>
+              <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+      </div>
+      <!-- /.widget-user -->
+    </div>
+    <!-- /.col --> 
+  </div>
+
+    <!-- movements-box -->
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">Invoice movements</h3>
+      </div>
+      <!-- /.box-header -->
+            
+      <div class="box-body">
+        <finances-shared-movements
+          [movements]="movements"
+          [showNewMovementButton]="false"
+          [showDeleteMovementButton]="false"
+        >
+        </finances-shared-movements>
+      </div>
+
+      <div class="box-footer clearfix">
+        <a *ngIf="isClosed() && !isPaid()" [routerLink]="['pay']" class="btn btn-sm btn-success btn-flat pull-right">
+          <i class="fa fa-money"></i> Pay
+        </a>
+        <button *ngIf="isClosed() && !isPaid()" (click)="openInvoice()" class="btn btn-sm btn-info btn-flat pull-right">
+          <i class="fa fa-folder-open-o"></i> Open invoice
+        </button>
+        <button *ngIf="!isClosed()" (click)="closeInvoice()" class="btn btn-sm btn-primary btn-flat pull-right">
+          <i class="fa fa-check"></i> Close invoice
+        </button>
+        <a [routerLink]="['print']" class="btn btn-sm btn-default btn-flat pull-right">
+          <i class="fa fa-print"></i> Print
+        </a>        
+      </div>
+      <!-- /.box-footer -->
+    </div>
+    <!-- ./movements-box -->   
+</section>
