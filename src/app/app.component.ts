@@ -7,7 +7,7 @@ import { AuthService } from './auth.service'
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  authenticated: boolean  
+  authenticated: boolean = false
 
   constructor(private authService: AuthService) {}
 

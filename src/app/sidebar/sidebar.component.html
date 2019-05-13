@@ -21,6 +21,7 @@
             <li routerLinkActive="active">
                 <a [routerLink]="['/credit-cards']"><i class="fa fa-credit-card"></i> <span>Credit cards</span></a>
             </li>
+            <!-- 
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-file-excel-o"></i> <span>Reports</span>
@@ -32,18 +33,13 @@
                     <li><a [routerLink]="['/bank-statement']"><i class="fa fa-circle-o"></i> Bank statement</a></li>
                 </ul>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-cogs"></i> <span>Manage</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a [routerLink]="['/categories']"><i class="fa fa-circle-o"></i> Categories</a></li>
-                    <li><a [routerLink]="['/subcategories']"><i class="fa fa-circle-o"></i> Subcategories</a></li>
-                </ul>
-            </li>   
+            -->
+            <li routerLinkActive="active">
+                <a [routerLink]="['/categories']"><i class="fa fa-circle-o"></i> <span>Categories</span></a>
+            </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/subcategories']"><i class="fa fa-circle-o"></i> <span>Subcategories</span></a>
+            </li>
         </ul>
     </section>
 </aside>
