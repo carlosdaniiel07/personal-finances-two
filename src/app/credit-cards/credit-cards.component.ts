@@ -6,6 +6,8 @@ import { CreditCardService } from './credit-card.service'
 
 import { CreditCard } from './credit-card.model'
 
+import { Util } from './../shared/util.functions'
+
 @Component({
   selector: 'finances-credit-cards',
   templateUrl: './credit-cards.component.html'
@@ -20,13 +22,15 @@ export class CreditCardsComponent implements OnInit {
   }
 
   public deleteCreditCard(creditCard: CreditCard): void {
-  	if(confirm('Voce realmente deseja excluir este cartao de credito?')){
-      this.creditCards.subscribe((data: CreditCard[]) => {
-      	data.splice(data.indexOf(creditCard), 1)
-      	this.creditCards = of(data)
+  	Util.confirmNotify('Do you realy want to delete this credit card?').then((value: boolean) => {
+      if(value){
+        this.creditCards.subscribe((data: CreditCard[]) => {
+        data.splice(data.indexOf(creditCard), 1)
+        this.creditCards = of(data)
       })
 
       this.service.deleteCreditCard(creditCard.Id).subscribe()
-    }
+      }
+    })
   }
 }

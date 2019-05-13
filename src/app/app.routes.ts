@@ -1,5 +1,9 @@
 import { Routes } from '@angular/router'
 
+import { RouteGuard } from './route-guard'
+
+import { LoginComponent } from './login/login.component'
+
 import { DashboardComponent } from './dashboard/dashboard.component'
 
 import { AccountsComponent } from './accounts/accounts.component'
@@ -43,41 +47,43 @@ import { InvoiceDetailsPrintComponent } from './invoices/invoice-details/invoice
 import { TransfersComponent } from './transfers/transfers.component'
 
 export const ROUTES: Routes = [
-	{path: '', component: DashboardComponent},
-	{path: 'dashboard', component: DashboardComponent},
-	{path: 'accounts', component: AccountsComponent},
-	{path: 'accounts/:id', component: AccountDetailsComponent},
-	{path: 'accounts/edit/:id', component: EditAccountComponent},
-	{path: 'new-account', component: NewAccountComponent},	
-	{path: 'movements', component: MovementsComponent },
-	{path: 'movements/:id', component: MovementDetailsComponent },
-	{path: 'new-movement', component: NewMovementComponent},
-	{path: 'edit-movement/:id', component: EditMovementComponent},
-	{path: 'categories', component: CategoriesComponent },
-	{path: 'categories/:id', component: CategoryDetailsComponent, children: [
+	{path: '', component: LoginComponent},
+	{path: 'login', component: LoginComponent},
+	{path: 'dashboard', component: DashboardComponent, canActivate: [RouteGuard]},
+	{path: 'accounts', component: AccountsComponent, canActivate: [RouteGuard]},
+	{path: 'accounts/:id', component: AccountDetailsComponent, canActivate: [RouteGuard]},
+	{path: 'accounts/edit/:id', component: EditAccountComponent, canActivate: [RouteGuard]},
+	{path: 'new-account', component: NewAccountComponent, canActivate: [RouteGuard]},	
+	{path: 'movements', component: MovementsComponent, canActivate: [RouteGuard]},
+	{path: 'movements/:id', component: MovementDetailsComponent, canActivate: [RouteGuard] },
+	{path: 'new-movement', component: NewMovementComponent, canActivate: [RouteGuard]},
+	{path: 'edit-movement/:id', component: EditMovementComponent, canActivate: [RouteGuard]},
+	{path: 'categories', component: CategoriesComponent, canActivate: [RouteGuard]},
+	{path: 'categories/:id', component: CategoryDetailsComponent, canActivate: [RouteGuard], children: [
 		{path: '', redirectTo: 'movements', pathMatch: 'full'},
 		{path: 'movements', component: CategoryMovementsComponent },
 		{path: 'subcategories', component: CategorySubcategoriesComponent}
 	]},
-	{path: 'new-category',  component: NewCategoryComponent},
-	{path: 'categories/edit/:id', component: EditCategoryComponent},
-	{path: 'subcategories', component: SubcategoriesComponent},
-	{path: 'new-subcategory', component: NewSubcategoryComponent},
-	{path: 'subcategories/:id', component: SubcategoryDetailsComponent},
-	{path: 'subcategories/edit/:id', component: EditSubcategoryComponent},
-	{path: 'projects', component: ProjectsComponent},
-	{path: 'projects/:id', component: ProjectDetailsComponent},
-	{path: 'new-project', component: NewProjectComponent},
-	{path: 'projects/edit/:id', component: EditProjectComponent},
-	{path: 'credit-cards', component: CreditCardsComponent},
-	{path: 'new-credit-card', component: NewCreditCardComponent},
-	{path: 'credit-cards/:id', component: CreditCardDetailsComponent, children: [
+	{path: 'new-category',  component: NewCategoryComponent, canActivate: [RouteGuard]},
+	{path: 'categories/edit/:id', component: EditCategoryComponent, canActivate: [RouteGuard]},
+	{path: 'subcategories', component: SubcategoriesComponent, canActivate: [RouteGuard]},
+	{path: 'new-subcategory', component: NewSubcategoryComponent, canActivate: [RouteGuard]},
+	{path: 'subcategories/:id', component: SubcategoryDetailsComponent, canActivate: [RouteGuard]},
+	{path: 'subcategories/edit/:id', component: EditSubcategoryComponent, canActivate: [RouteGuard]},
+	{path: 'projects', component: ProjectsComponent, canActivate: [RouteGuard]},
+	{path: 'projects/:id', component: ProjectDetailsComponent, canActivate: [RouteGuard]},
+	{path: 'new-project', component: NewProjectComponent, canActivate: [RouteGuard]},
+	{path: 'projects/edit/:id', component: EditProjectComponent, canActivate: [RouteGuard]},
+	{path: 'credit-cards', component: CreditCardsComponent, canActivate: [RouteGuard]},
+	{path: 'new-credit-card', component: NewCreditCardComponent, canActivate: [RouteGuard]},
+	{path: 'credit-cards/:id', component: CreditCardDetailsComponent, canActivate: [RouteGuard], children: [
 		{path: '', redirectTo: 'invoices', pathMatch: 'full'},
 		{path: 'invoices', component: CreditCardInvoicesComponent},
 		{path: 'movements', component: CreditCardMovementsComponent}
 	]},
-	{path: 'credit-cards/edit/:id', component: EditCreditCardComponent},
-	{path: 'transfers', component: TransfersComponent},
-	{path: 'invoices/:id', component: InvoiceDetailsComponent},
-	{path: 'invoices/:id/pay', component: InvoiceDetailsPayComponent}
+	{path: 'credit-cards/edit/:id', component: EditCreditCardComponent, canActivate: [RouteGuard]},
+	{path: 'transfers', component: TransfersComponent, canActivate: [RouteGuard]},
+	{path: 'invoices/:id', component: InvoiceDetailsComponent, canActivate: [RouteGuard]},
+	{path: 'invoices/:id/pay', component: InvoiceDetailsPayComponent, canActivate: [RouteGuard]},
+	{path: 'invoices/:id/print', component: InvoiceDetailsPrintComponent, canActivate: [RouteGuard]}
 ]

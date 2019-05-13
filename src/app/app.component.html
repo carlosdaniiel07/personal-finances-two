@@ -1,15 +1,15 @@
 <!-- wrapper -->
-<div class="wrapper">
-	<finances-header></finances-header>
-	<finances-sidebar></finances-sidebar>
+<div [class.wrapper]="authenticated">
+	<finances-header *ngIf="authenticated"></finances-header>
+	<finances-sidebar *ngIf="authenticated"></finances-sidebar>
 
 	<!-- content-wrapper. Contains page content -->
-	<div class="content-wrapper">
+	<div [class.content-wrapper]="authenticated">
 		<router-outlet></router-outlet>
 	</div>
 	<!-- /.content-wrapper -->
 
-	<finances-control-sidebar></finances-control-sidebar>
-	<finances-footer></finances-footer>
+	<finances-control-sidebar *ngIf="authenticated"></finances-control-sidebar>
+	<finances-footer *ngIf="authenticated"></finances-footer>
 </div>
 <!-- /.wrapper -->

@@ -8,6 +8,9 @@ import { NgxMaskModule } from 'ngx-mask'
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
+import { ErrorInterceptor } from './error-interceptor'
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -26,6 +29,9 @@ import { SubcategoryService } from './subcategories/subcategory.service';
 import { ProjectService } from './projects/project.service';
 import { CreditCardService } from './credit-cards/credit-card.service'
 import { InvoiceService } from './invoices/invoice.service'
+
+import { AuthService } from './auth.service'
+import { RouteGuard } from './route-guard'
 
 import { AccountDetailsComponent } from './accounts/account-details/account-details.component';
 import { MovementsComponent } from './movements/movements.component';
@@ -65,6 +71,7 @@ import { CreditCardInvoicesItemComponent } from './credit-cards/credit-card-deta
 import { InvoiceDetailsComponent } from './invoices/invoice-details/invoice-details.component';
 import { InvoiceDetailsPayComponent } from './invoices/invoice-details/invoice-details-pay/invoice-details-pay.component';
 import { InvoiceDetailsPrintComponent } from './invoices/invoice-details/invoice-details-print/invoice-details-print.component';
+import { LoginComponent } from './login/login.component';
 
 registerLocaleData(ptBr)
 
@@ -115,7 +122,8 @@ registerLocaleData(ptBr)
     CreditCardInvoicesItemComponent,
     InvoiceDetailsComponent,
     InvoiceDetailsPayComponent,
-    InvoiceDetailsPrintComponent
+    InvoiceDetailsPrintComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -132,7 +140,10 @@ registerLocaleData(ptBr)
     ProjectService,
     CreditCardService,
     InvoiceService,
-    {provide: LOCALE_ID, useValue: 'pt-BR'}
+    AuthService,
+    RouteGuard,
+    {provide: LOCALE_ID, useValue: 'pt-BR'},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

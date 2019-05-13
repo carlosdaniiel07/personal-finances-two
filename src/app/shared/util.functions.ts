@@ -1,6 +1,7 @@
 // SweetAlert
 import swal from 'sweetalert'
 
+
 export class Util {
 	// convert a date string ddMMyyyy to dd/MM/yyyy
 	public static toDateFormat(obj: string): string {
@@ -31,6 +32,7 @@ export class Util {
 		}
 	}
 
+	// show a success modal (SweetAlert)
 	public static successNotify(message: string, title: string = 'Success'): void {
 		swal({
 			title: title,
@@ -39,6 +41,7 @@ export class Util {
 		})
 	}
 
+	// show a error modal (SweetAlert)
 	public static errorNotify(message: string, title: string = 'Error'): void {
 		swal({
 			title: title,
@@ -47,6 +50,7 @@ export class Util {
 		})
 	}
 
+	// show a generic modal (SweetAlert)
 	public static genericNotify(message: string, title: string = ''): void {
 		swal({
 			title: title,

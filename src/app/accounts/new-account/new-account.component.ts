@@ -27,7 +27,7 @@ export class NewAccountComponent implements OnInit {
     this.service.insertAccount(account)
     
     this.newAccountForm.reset()
-    this.type.setValue(this.getAvailableAccountTypes[0].value)
+    this.type.setValue(this.getAvailableAccountTypes()[0].value)
   }
 
   public getAvailableAccountTypes(): Select[] {

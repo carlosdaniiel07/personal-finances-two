@@ -1,9 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { AuthService } from './auth.service'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent {
-  title = 'personal-finances-two';
+export class AppComponent implements OnInit {
+  authenticated: boolean  
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+  	this.authService.authEvent.subscribe((value: boolean) => this.authenticated = value)
+  }
+
+  ngOnDestroy(){
+  	this.authService.authEvent.unsubscribe()
+  }
 }

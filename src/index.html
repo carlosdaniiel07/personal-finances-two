@@ -1,33 +1,35 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  
-  <title>Personal Finances 2 | App</title>
-  <base href="/">
-  
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
-  <style type="text/css">
-    body {
-      background-color: #3c8dbc !important;
-    }
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     
-    #loading-image {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-top: -32px;
-        margin-left: -32px;
-    }
-  </style>
-</head>
-<body class="hold-transition skin-blue sidebar-mini">
-  <app-root>
-  	<img src="assets/loading-icon.gif" alt="Loading" id="loading-image" />
-  </app-root>
-</body>
+    <title>Personal Finances 2 | App</title>
+    <base href="/">
+    
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <style type="text/css">
+      body {
+        background-color: #d2d6de !important;
+      }
+      
+      #loading-container #loading-image {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin-top: -32px;
+          margin-left: -32px;
+      }
+    </style>
+  </head>
+  <body class="hold-transition skin-blue sidebar-mini">
+    <app-root>
+    	<div id="loading-container">
+        <img src="assets/loading-icon.gif" alt="Loading" id="loading-image" /> 
+      </div>
+    </app-root>
+  </body>
 </html>
