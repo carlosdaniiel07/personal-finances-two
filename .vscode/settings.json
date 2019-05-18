@@ -1,0 +1,7 @@
+{
+    "appService.showBuildDuringDeployPrompt": false,
+    "appService.zipIgnorePattern": [
+        ".vscode{,/**}"
+    ],
+    "appService.deploySubpath": ""
+}
