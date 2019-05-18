@@ -1,6 +1,5 @@
 // SweetAlert
-import swal from 'sweetalert'
-
+import swal from 'sweetalert2'
 
 export class Util {
 	// convert a date string ddMMyyyy to dd/MM/yyyy
@@ -34,28 +33,28 @@ export class Util {
 
 	// show a success modal (SweetAlert)
 	public static successNotify(message: string, title: string = 'Success'): void {
-		swal({
+		swal.fire({
 			title: title,
 			text: message,
-			icon: 'success'
+			type: 'success'
 		})
 	}
 
 	// show a error modal (SweetAlert)
 	public static errorNotify(message: string, title: string = 'Error'): void {
-		swal({
+		swal.fire({
 			title: title,
 			text: message,
-			icon: 'error'	
+			type: 'error'	
 		})
 	}
 
 	// show a generic modal (SweetAlert)
 	public static genericNotify(message: string, title: string = ''): void {
-		swal({
+		swal.fire({
 			title: title,
 			text: message,
-			buttons: [''],
+			showConfirmButton: false,
 			timer: 3000
 		})
 	}
@@ -63,12 +62,12 @@ export class Util {
 	// show a confirm modal with 'Cancel' and 'OK' buttons. Return true if 'OK' and false if 'Cancel'
 	public static confirmNotify(message: string, title: string = 'Alert'): Promise<any> {
 		return new Promise<any>((result, failure) => {
-			swal({
+			swal.fire({
 				title: title,
 				text: message,
-				icon: 'warning',
-				buttons: ['Cancel', 'OK'],
-				dangerMode: true
+				type: 'warning',
+				confirmButtonText: 'OK',
+				cancelButtonText: 'Cancel'
 			}).then((option) => result(option === null ? false : true))
 		})
 	}

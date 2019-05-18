@@ -27,7 +27,7 @@ export class InvoiceDetailsPayComponent implements OnInit {
   	this.loadData()
   }
 
-  private payInvoice(): void {
+  public payInvoice(): void {
   	let alertString: string = (this.value.value > this.getBalanceOfSelectedAccount() && this.isLaunchedMovement()) ? 
   		'This account has no enough balance!' : ''
 
