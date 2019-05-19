@@ -33,20 +33,12 @@ export class Util {
 
 	// show a success modal (SweetAlert)
 	public static successNotify(message: string, title: string = 'Success'): void {
-		swal.fire({
-			title: title,
-			text: message,
-			type: 'success'
-		})
+		swal.fire(title, message, 'success')
 	}
 
 	// show a error modal (SweetAlert)
 	public static errorNotify(message: string, title: string = 'Error'): void {
-		swal.fire({
-			title: title,
-			text: message,
-			type: 'error'	
-		})
+		swal.fire(title, message, 'error')
 	}
 
 	// show a generic modal (SweetAlert)
@@ -61,14 +53,18 @@ export class Util {
 
 	// show a confirm modal with 'Cancel' and 'OK' buttons. Return true if 'OK' and false if 'Cancel'
 	public static confirmNotify(message: string, title: string = 'Alert'): Promise<any> {
-		return new Promise<any>((result, failure) => {
+		return new Promise<any>((returned, failure) => {
 			swal.fire({
 				title: title,
 				text: message,
 				type: 'warning',
 				confirmButtonText: 'OK',
-				cancelButtonText: 'Cancel'
-			}).then((option) => result(option === null ? false : true))
+				cancelButtonText: 'Cancel',
+				showCancelButton: true,
+				reverseButtons: true
+			}).then((result) => {
+				returned((result.value) ? true : false)
+			})
 		})
 	}
 }

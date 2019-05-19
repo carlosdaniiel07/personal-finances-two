@@ -1,1 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+/* adjust the size of the SweetAlert2's modals */
+.swal2-popup {
+  font-size: 1.6rem !important;
+}

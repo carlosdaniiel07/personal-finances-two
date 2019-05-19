@@ -47,7 +47,7 @@ export class InvoiceService {
 	// pay an invoice
 	public payInvoice(invoiceId: number, object: any): Observable<Invoice> {
 		let data = JSON.stringify(object)
-
+		
 		return this.http.put<Invoice>(`${API_ENDPOINT}/invoices/pay/${invoiceId}`, data,
 			{ headers: this.authService.getApiAuthHeader() })
 	}
